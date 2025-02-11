@@ -1,29 +1,41 @@
 package a01_webDriverMethod;
 
+import java.time.Duration;
+import java.util.Iterator;
+import java.util.Set;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class s11_switchTo {
 
-    public static void main(String[] args) {
-        ChromeDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
+	public static void main(String[] args) throws InterruptedException {
 
-        driver.get("file:///C:/Uers/GANGA/Desktop/Selenium_Kiran/MultipleWindow%20(1).html");
-		Thread.sleep(2000);
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.navigate().to("https://www.dream11.com/");
 
-		String parentId = driver.getWindowHandle();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		for (;;) {
+			try {
+				driver.findElement(By.linkText("About Us")).click();
+				break;
+			} catch (Exception e) {
+				js.executeScript("Window.scrollBy(0,300)");
+			}
+		}
 
-		driver.findElement(By.xpath("//input[@value'Open Food Sites']")).click();
-		Thread.sleep(2000);
+		Set<String> windowHandles = driver.getWindowHandles();
+		Iterator<String> it = windowHandles.iterator();
+		String p1 = it.next();
+		String p2 = it.next();
 
-		Set<String> allWindowIds = driver.getWindowHandles();
-		allWindowIds.remove(parentId);
+		driver.switchTo().window(p2);
 
-		for (String Id : allWindowIds) {
-			driver.switchTo().window(Id);
-			driver.close();
-			Thread.sleep(3000);
-    }
-  }
+		driver.findElement(By.xpath("//li[@id='menu-item-4018']")).click();
+
+	}
 }
