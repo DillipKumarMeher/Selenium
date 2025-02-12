@@ -15,6 +15,25 @@ public class s06_axes {
         driver.findElement(By.id("pass")).sendKeys("DillipBoss");
         Thread.sleep(2000);
 
-        driver.findElement(By.xpath("//input[@id='pass']/following-sibling::div")).click();
+        driver.findElement(By.xpath("//input[@id='pass']/following::div[2]")).click();
     }
 }
+
+
+        // //parent
+        // driver.findElement(By.xpath("//label[text()='Last Name']/following-sibling::input[1]/parent::div"));
+        
+        // //child
+        // driver.findElement(By.xpath("//div[@class='container']/child::label[1]/following-sibling::input[1]"));
+
+        // // following-sibling
+        // driver.findElement(By.xpath("//label[text()='First Name ']/following-sibling::input[1]")).sendKeys("Dillip");
+        
+        // //preceding-sibling
+        // driver.findElement(By.xpath("//td[text()='Maria Anders']/preceding::td/child::input"));
+
+        // //ancestor
+        // driver.findElement(By.xpath("//button[@class='btn']/ancestor::div"));
+
+        // //descendant
+        // driver.findElement(By.xpath("//div[@class='container']/descendant::button[text()='Register']"));
