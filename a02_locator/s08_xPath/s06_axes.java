@@ -19,7 +19,8 @@ public class s06_axes {
     }
 }
 
-
+        //  driver.navigate().to("https://www.hyrtutorials.com/p/add-padding-to-containers.html");
+        
         // //parent
         // driver.findElement(By.xpath("//label[text()='Last Name']/following-sibling::input[1]/parent::div"));
         
@@ -37,3 +38,5 @@ public class s06_axes {
 
         // //descendant
         // driver.findElement(By.xpath("//div[@class='container']/descendant::button[text()='Register']"));
+
+
